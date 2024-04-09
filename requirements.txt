@@ -6,3 +6,4 @@ Pillow
 scipy
 huggingface_hub
 transformers
+accelerate

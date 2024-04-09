@@ -1,5 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import torch
 from torch import nn
 from torch import optim
@@ -7,23 +5,18 @@ from torch import optim
 import huggingface_hub
 import transformers
 from transformers import AutoModel, AutoTokenizer
-import os
 
-
-# load the model
-def load_model():
-    model = AutoModel.from_pretrained("CausalLM/14B")
-    tokenizer = AutoTokenizer.from_pretrained("CausalLM/14B")
-    print(model.config)
-    return model, tokenizer
+import utils
 
 
 def main():
-    model, tokenizer = load_model()
+    base_model_name, fintuned_model_name = utils.select_model(1)
+    device = utils.get_device()
+
+    base_model = utils.load_model(base_model_name, device)
+    base_tokenizer = utils.load_tokenizer(base_model_name)
+
+    fintuned_model = utils.load_model(fintuned_model_name, device)
+    fintuned_tokenizer = utils.load_tokenizer(fintuned_model_name)
 
 
-if __name__ == "__main__":
-    # login to huggingface
-    token = os.getenv("HF_TOKEN")
-    huggingface_hub.login(token=token)
-    main()
