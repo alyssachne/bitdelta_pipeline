@@ -6,7 +6,8 @@ from torch import optim
 
 import huggingface_hub
 import transformers
-from transformers import AutoModel, AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModel, AutoTokenizer, AutoConfig
+import dataset
 import os
 
 from typing import Tuple
@@ -42,6 +43,15 @@ def load_tokenizer(model_name):
     )
 
 
+# def load_config(model_name):
+#     """
+#     Load the model configuration using model name.
+#     """
+#     return AutoConfig.from_pretrained(
+#         model_name
+#     )
+
+
 def get_device() -> torch.device:
     # check for cuda availability
     if torch.cuda.is_available():
@@ -64,17 +74,22 @@ def select_model(c: int):
         return "CausalLM/14B"
         
 
-
 def main(base_model_name, fintuned_model_name, device):
     base_model = load_model(base_model_name, device)
     base_tokenizer = load_tokenizer(base_model_name)
+    print("Base Model:")
     print(base_model.config)
     print(base_tokenizer.vocab_size)
+    # print(base_config)
 
+    print("Fintuned Model: ")
     fintuned_model = load_model(fintuned_model_name, device)
     fintuned_tokenizer = load_tokenizer(fintuned_model_name)
     print(fintuned_model.config)
     print(fintuned_tokenizer.vocab_size)
+
+    # corrs, stddevs = find_corr_stddev(base_model, fintuned_model)
+    # print(corrs, stddevs)
 
 
 if __name__ == "__main__":
@@ -84,7 +99,7 @@ if __name__ == "__main__":
     token = os.getenv("HF_TOKEN")
     huggingface_hub.login(token=token)
 
-    base_model, fintuned_model = select_model(1)
+    base_model_name, fintuned_model_name = select_model(1)
     device = get_device()
 
-    main(base_model, fintuned_model, device)
+    main(base_model_name, fintuned_model_name, device)
