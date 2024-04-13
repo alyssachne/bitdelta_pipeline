@@ -68,12 +68,12 @@ def check_difference(base_model, finetuned_model, device):
 
 def weight_combine(base_model, finetuned_model, device):
     """
-    Combine the weights of the models into two large tensors.
+    Combine the weights of the models into two large 1D tensors.
     """
     base_dict = base_model.state_dict()
     finetuned_dict = finetuned_model.state_dict()
 
-    # combine the weights to a 1D tensor
+    # combine base weights
     base_weights = []
     for layer in base_dict.keys():
 
@@ -86,6 +86,7 @@ def weight_combine(base_model, finetuned_model, device):
     base_weights = torch.cat(base_weights, dim=0).to(device)
 
 
+    # combine finetuned weights
     finetuned_weights = []
     for layer in finetuned_dict.keys():
         if "weight" not in str(layer) and "bias" not in str(layer):
@@ -100,6 +101,21 @@ def weight_combine(base_model, finetuned_model, device):
 
 
     return base_weights, finetuned_weights
+
+
+
+def create_new_finetuned_weights(base_model, finetuned_model, device):
+    base_weights, finetuned_weights = weight_combine(base_model, finetuned_model, device)
+    print("Amount of trainable weights: ", finetuned_weights.size())
+    print("\n")
+
+    start_time = time.time()
+
+    new_finetuned_weights = (finetuned_weights >= base_weights).float()
+    positive_percentage = torch.count_nonzero(new_finetuned_weights) / new_finetuned_weights.size(0) * 100
+    print("Percentage of positive weights: ", positive_percentage)
+
+    print("Time taken: ", time.time() - start_time)
 
 
 def main():
@@ -122,17 +138,7 @@ def main():
 
     # check_difference(base_model, finetuned_model, device)
 
-    base_weights, finetuned_weights = weight_combine(base_model, finetuned_model, device)
-    print("Amount of trainable weights: ", finetuned_weights.size())
-    print("\n")
-
-    start_time = time.time()
-
-    new_finetuned_weights = (finetuned_weights >= base_weights).float()
-    positive_percentage = torch.count_nonzero(new_finetuned_weights) / new_finetuned_weights.size(0) * 100
-    print("Percentage of positive weights: ", positive_percentage)
-
-    print("Time taken: ", time.time() - start_time)
+    create_new_finetuned_weights(base_model, finetuned_model, device)
 
 if __name__ == "__main__":
     main()
