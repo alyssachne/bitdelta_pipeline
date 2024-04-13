@@ -25,7 +25,7 @@ def load_model(model_name, device, memory_map=None) -> AutoModel:
             model_name,
             torch_dtype=torch.bfloat16,
             low_cpu_mem_usage=True
-        ).to(device)
+        )
     
     # if multi-gpu
     else:
@@ -60,6 +60,8 @@ def get_device() -> torch.device:
     else:
         device = torch.device("cpu")
         print("Using CPU")
+
+    return device
 
 
 def select_model(c: int):
