@@ -8,6 +8,7 @@ from transformers import AutoModel, AutoTokenizer
 import time
 
 import model
+from compressed_model import CompressedModel
 
 
 def check_model_layers(base_model, finetuned_model, trace=False):
@@ -103,7 +104,6 @@ def weight_combine(base_model, finetuned_model, device):
     return base_weights, finetuned_weights
 
 
-
 def create_new_finetuned_weights(base_model, finetuned_model, device):
     base_weights, finetuned_weights = weight_combine(base_model, finetuned_model, device)
     print("Amount of trainable weights: ", finetuned_weights.size())
@@ -111,11 +111,20 @@ def create_new_finetuned_weights(base_model, finetuned_model, device):
 
     start_time = time.time()
 
-    new_finetuned_weights = (finetuned_weights >= base_weights).float()
-    positive_percentage = torch.count_nonzero(new_finetuned_weights) / new_finetuned_weights.size(0) * 100
+    new_finetuned_weights = torch.where(finetuned_weights >= base_weights, 1.0, -1.0)
+    positive_percentage = torch.sum(new_finetuned_weights.eq(1)).item() / new_finetuned_weights.size(0) * 100
     print("Percentage of positive weights: ", positive_percentage)
 
     print("Time taken: ", time.time() - start_time)
+
+    return new_finetuned_weights
+
+
+def create_new_finetuned_model(base_model, finetuned_model, device):
+    compressed_model = CompressedModel(base_model, finetuned_model)
+    compressed_model.to(device)
+
+    return compressed_model
 
 
 def main():
@@ -138,7 +147,9 @@ def main():
 
     # check_difference(base_model, finetuned_model, device)
 
-    create_new_finetuned_weights(base_model, finetuned_model, device)
+    # new_finetuned_weights = create_new_finetuned_weights(base_model, finetuned_model, device)
+
+    new_finetuned_model = create_new_finetuned_model(base_model, finetuned_model, device)
 
 if __name__ == "__main__":
     main()
