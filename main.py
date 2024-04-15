@@ -7,8 +7,8 @@ import transformers
 from transformers import AutoModel, AutoTokenizer
 import time
 
-import model
-from compressed_model import CompressedModel
+import utils
+from compressed_model import compress_diff
 
 
 def check_model_layers(base_model, finetuned_model, trace=False):
@@ -120,37 +120,41 @@ def create_new_finetuned_weights(base_model, finetuned_model, device):
     return new_finetuned_weights
 
 
-def create_new_finetuned_model(base_model, finetuned_model, device):
-    compressed_model = CompressedModel(base_model, finetuned_model)
-    compressed_model.to(device)
-
+def create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device):
+    compressed_model = utils.load_model(finetuned_model_name, device)
+    compress_diff(base_model, finetuned_model, compressed_model)
     return compressed_model
 
 
-def main():
+def compress():
 
-    base_model_name, finetuned_model_name = model.select_model(1)
-    device = model.get_device()
+    base_model_name, finetuned_model_name = utils.select_model(1)
+    device = utils.get_device()
 
-    print(device)
-
-    base_model = model.load_model(base_model_name, device)
-    base_tokenizer = model.load_tokenizer(base_model_name)
+    base_model = utils.load_model(base_model_name, device)
+    base_tokenizer = utils.load_tokenizer(base_model_name)
     base_model_config = base_model.config
 
-    finetuned_model = model.load_model(finetuned_model_name, device)
-    finetuned_tokenizer = model.load_tokenizer(finetuned_model_name)
+    finetuned_model = utils.load_model(finetuned_model_name, device)
+    finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
     finetuned_model_config = finetuned_model.config
 
     check_model_layers(base_model, finetuned_model)
-    print("\n")
 
     # check_difference(base_model, finetuned_model, device)
 
     # new_finetuned_weights = create_new_finetuned_weights(base_model, finetuned_model, device)
 
-    new_finetuned_model = create_new_finetuned_model(base_model, finetuned_model, device)
+    compressed_model = create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device)
+
+    print("New Finetuned Model:")
+    print(compressed_model.state_dict().keys())
+
+
+def test():
+    pass
+
 
 if __name__ == "__main__":
-    main()
+    compress()
 
