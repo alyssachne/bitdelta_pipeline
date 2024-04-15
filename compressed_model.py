@@ -30,23 +30,36 @@ class BinaryDiff(nn.Module):
                 )
             ),
         )
+        if diff.is_meta:
+            print("Warning: diff is meta")
+        if base.is_meta:
+            print("Warning: base is meta")
+        if finetune.is_meta:
+            print("Warning: finetune is meta")
         del base, finetune, diff
 
     def forward(self, x):
         # repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
         return x @ self.base + self.coeff * x @ self.base
 
-def compress_diff(base_model, finetuned_model, finetuned_compressed_model):
-    def compress_submodule(name, subname, module, submodule):
-        target_device = submodule.weight.device
-                    
-        base_weight = base_model.get_submodule(f"{name}.{subname}").weight.detach().to(target_device)
-        finetuned_weight = finetuned_model.get_submodule(f"{name}.{subname}").weight.detach().to(target_device)
+def compress_diff(base_model, finetuned_model, finetuned_compressed_model, device):
+    def compress_module(name, subname, module, submodule, device):
+        # target_device = submodule.weight.device
+        
+        base_weight = base_model.get_submodule(f"{name}.{subname}").weight.detach()
+        if base_weight.is_meta:
+            base_weight = torch.zeros(base_weight.size())
+        base_weight = base_weight.to(device)
+        finetuned_weight = finetuned_model.get_submodule(f"{name}.{subname}").weight.detach()
+        if finetuned_weight.is_meta:
+            finetuned_weight = torch.zeros(finetuned_weight.size())
+            print("A\n")
+        finetuned_weight = finetuned_weight.to(device)
 
         compressed = BinaryDiff(
             base=base_weight,
             finetune=finetuned_weight,
-        ).to(target_device)
+        ).to(device)
 
         del submodule, base_weight
         setattr(module, subname, None)
@@ -54,13 +67,10 @@ def compress_diff(base_model, finetuned_model, finetuned_compressed_model):
         torch.cuda.empty_cache()
         setattr(module, subname, compressed)
 
-    # TODO: this can be parallelized
     for name, module in finetuned_compressed_model.named_modules():
-        print(name)
-        if "mlp" in name or "self_attn" in name:
-            for subname, submodule in module.named_children():
-                if "proj" in subname:
-                    compress_submodule(name, subname, module, submodule)
+        for subname, submodule in module.named_children():
+            if hasattr(submodule, "weight"):
+                compress_module(name, subname, module, submodule, device)
 
 
 # class CompressedModel(nn.Module):

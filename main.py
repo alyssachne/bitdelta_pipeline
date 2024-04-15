@@ -9,6 +9,7 @@ import time
 
 import utils
 from compressed_model import compress_diff
+from dataset import get_dataset
 
 
 def check_model_layers(base_model, finetuned_model, trace=False):
@@ -122,7 +123,8 @@ def create_new_finetuned_weights(base_model, finetuned_model, device):
 
 def create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device):
     compressed_model = utils.load_model(finetuned_model_name, device)
-    compress_diff(base_model, finetuned_model, compressed_model)
+    compress_diff(base_model, finetuned_model, compressed_model, device)
+    compressed_model.to(device)
     return compressed_model
 
 
@@ -132,12 +134,8 @@ def compress():
     device = utils.get_device()
 
     base_model = utils.load_model(base_model_name, device)
-    base_tokenizer = utils.load_tokenizer(base_model_name)
-    base_model_config = base_model.config
 
     finetuned_model = utils.load_model(finetuned_model_name, device)
-    finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
-    finetuned_model_config = finetuned_model.config
 
     check_model_layers(base_model, finetuned_model)
 
@@ -147,12 +145,9 @@ def compress():
 
     compressed_model = create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device)
 
-    print("New Finetuned Model:")
-    print(compressed_model.state_dict().keys())
+    print("Finetuned Model Compressed.")
 
-
-def test():
-    pass
+    return compressed_model
 
 
 if __name__ == "__main__":

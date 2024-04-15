@@ -43,13 +43,13 @@ def load_tokenizer(model_name):
     )
 
 
-# def load_config(model_name):
-#     """
-#     Load the model configuration using model name.
-#     """
-#     return AutoConfig.from_pretrained(
-#         model_name
-#     )
+def load_config(model_name):
+    """
+    Load the model configuration using model name.
+    """
+    return AutoConfig.from_pretrained(
+        model_name
+    )
 
 
 def get_device() -> torch.device:
