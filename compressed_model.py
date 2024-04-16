@@ -15,10 +15,10 @@ class BinaryDiff(nn.Module):
         # note: use int8 to save memory
         mask = torch.where(diff > 0, 1, 0).to(base.device).to(torch.int8)
 
-        self.register_buffer("mask", mask.T)
+        self.register_buffer("mask", mask.T) # this is our bitdelta
         self.register_buffer("base", base.T)
         self.register_parameter(
-            "coeff", # this is our bitdelta
+            "coeff",
             nn.Parameter(
                 torch.tensor(
                     quantile,
