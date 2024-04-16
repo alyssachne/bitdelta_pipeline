@@ -57,7 +57,9 @@ Other Tasks: [financial_phrasebank](https://huggingface.co/datasets/financial_ph
 
 ## Usage
 
-#Todo
+```
+python test.py
+```
 
 ## Demo
 
