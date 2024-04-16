@@ -9,7 +9,7 @@ For Windows local machines:
 ```
 python -m venv venv
 venv\Scripts\activate.bat
-pip install -r requirements
+pip install -r requirements.txt
 ```
 If you have an NVIDIA graphics card, make sure to install torch with cuda at [here](https://pytorch.org/get-started/locally/)
 
