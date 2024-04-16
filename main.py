@@ -4,7 +4,7 @@ from torch import optim
 
 import huggingface_hub
 import transformers
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer, DistilBertTokenizer, DistilBertForSequenceClassification
 import time
 
 import utils
@@ -122,15 +122,14 @@ def create_new_finetuned_weights(base_model, finetuned_model, device):
 
 
 def create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device):
-    compressed_model = utils.load_model(finetuned_model_name, device)
+    compressed_model = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name).to(device)
     compress_diff(base_model, finetuned_model, compressed_model, device)
-    compressed_model.to(device)
     return compressed_model
 
 
-def compress():
+def compress(choice):
 
-    base_model_name, finetuned_model_name = utils.select_model(1)
+    base_model_name, finetuned_model_name = utils.select_model(choice)
     device = utils.get_device()
 
     base_model = utils.load_model(base_model_name, device)
@@ -144,8 +143,6 @@ def compress():
     # new_finetuned_weights = create_new_finetuned_weights(base_model, finetuned_model, device)
 
     compressed_model = create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device)
-
-    print("Finetuned Model Compressed.")
 
     return compressed_model
 

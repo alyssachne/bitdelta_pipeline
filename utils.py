@@ -11,6 +11,7 @@ import dataset
 import os
 
 from typing import Tuple
+from compressed_model import BinaryDiff
 
 
 def load_model(model_name, device, memory_map=None) -> AutoModel:
@@ -71,9 +72,31 @@ def select_model(c: int):
     if c == 1:
         base = "google-bert/bert-base-cased"
         finetuned = "piggyss/bert-finetuned-ner"
-        return base, finetuned
     elif c == 2:
         return "CausalLM/14B"
+    elif c == 3:
+        base = "distilbert/distilbert-base-uncased"
+        finetuned = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
+    elif c == 4:
+        base = 'distilbert/distilroberta-base'
+        finetuned = 'mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis'
+    return base, finetuned
+
+
+def save_diff(finetuned_compressed_model, save_dir):
+    diff_dict = {}
+
+    for name, module in finetuned_compressed_model.named_modules():
+        if isinstance(module, BinaryDiff):
+            # diff_dict[name + ".mask"] = (module.mask == 1).bool().cpu()
+            diff_dict[name + ".mask"] = module.mask.cpu()
+            diff_dict[name + ".coeff"] = module.coeff.cpu()
+
+    for name, param in finetuned_compressed_model.named_parameters():
+        if param.requires_grad:
+            diff_dict[name] = param.cpu()
+
+    torch.save(diff_dict, save_dir)
         
 
 def main(base_model_name, fintuned_model_name, device):

@@ -1,7 +1,7 @@
 import datasets
     
 
-def get_dataset(dataset, subset, size=None):
+def get_dataset(dataset, subset=None, size=None):
     """
     Load the dataset.
     """
