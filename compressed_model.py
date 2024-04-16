@@ -16,7 +16,9 @@ class BinaryDiff(nn.Module):
         # mask = torch.ones_like(diff)
         # mask[diff < 0] = 0
         # mask = pack(mask.bool().T)
-        mask = torch.where(diff > 0, 1, 0).to(base.device)
+        # note: use int8 to save memory
+        mask = torch.where(diff > 0, 1, 0).to(base.device).to(torch.int8)
+
 
         self.register_buffer("mask", mask.T)
         self.register_buffer("base", base.T)
@@ -25,8 +27,8 @@ class BinaryDiff(nn.Module):
             nn.Parameter(
                 torch.tensor(
                     quantile,
-                    dtype=torch.float32,
-                    requires_grad=True,
+                    dtype=torch.float16,
+                    requires_grad=False,
                     device=base.device,
                 )
             ),
@@ -34,15 +36,15 @@ class BinaryDiff(nn.Module):
         del base, finetune, diff
 
     def forward(self, x):
-        # repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
+        repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
         # print(x.size(), self.base.size(), self.coeff, self.mask.size())
         # print("\n")
 
         # convert datatype of x
         t_base = self.base.to(x.dtype)
         t_coeff = self.coeff.to(x.dtype)
-        t_mask = self.mask.to(x.dtype)
-        return x @ t_base + t_coeff * x @ t_mask
+        repeated_mask = repeated_mask.to(x.dtype)
+        return x @ t_base + t_coeff * x @ repeated_mask
 
 def compress_diff(base_model, finetuned_model, finetuned_compressed_model, device):
     def compress_module(parent_name, parent_module, name, module, device):
@@ -88,7 +90,6 @@ def save_diff(finetuned_compressed_model, save_dir):
 
     for name, module in finetuned_compressed_model.named_modules():
         if isinstance(module, BinaryDiff):
-            # diff_dict[name + ".mask"] = (module.mask == 1).bool().cpu()
             diff_dict[name + ".mask"] = module.mask
             diff_dict[name + ".coeff"] = module.coeff
 

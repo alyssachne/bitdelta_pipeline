@@ -4,22 +4,22 @@ from transformers import Trainer, TrainingArguments, DistilBertTokenizer, Distil
 
 from dataset import get_dataset
 from main import compress
-import utils
+import utils, compressed_model
 
 
 choice = 3
-dataset = get_dataset("glue", 'sst2')
+dataset = get_dataset('glue', 'sst2')
 print("Dataset loaded.")
 base_model_name, finetuned_model_name = utils.select_model(choice)
 finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
 print("Tokenizer loaded.")
-compressed_model = compress(choice)
+compressed = compress(choice)
 print("Model compressed.")
 print("\n")
 
-for name, module in compressed_model.named_modules():
-    print(f"Module: {name}, Weight: {module}")
-    print("\n")
+# for name, module in compressed_model.named_modules():
+#     print(f"Module: {name}, Weight: {module}")
+#     print("\n")
 
 def encode(text):
     tokenized_text = finetuned_tokenizer(text['sentence'], padding='max_length', truncation=True)
@@ -45,7 +45,7 @@ eval_args = TrainingArguments(
 
 # Setup Trainer
 trainer = Trainer(
-    model=compressed_model,
+    model=compressed,
     args=eval_args,
     eval_dataset=encoded_dataset['validation'],
     compute_metrics=compute_metrics,
@@ -56,6 +56,6 @@ print("Evaluation started.")
 results = trainer.evaluate()
 print(results)
 
-utils.save_diff(compressed_model, "diff.pt")
+compressed_model.save_diff(compressed, "diff.pt")
 
 print("Evaluation finished.")

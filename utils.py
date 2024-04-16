@@ -83,20 +83,17 @@ def select_model(c: int):
     return base, finetuned
 
 
-def save_diff(finetuned_compressed_model, save_dir):
-    diff_dict = {}
+# def save_diff(finetuned_compressed_model, save_dir):
+#     diff_dict = {}
 
-    for name, module in finetuned_compressed_model.named_modules():
-        if isinstance(module, BinaryDiff):
-            # diff_dict[name + ".mask"] = (module.mask == 1).bool().cpu()
-            diff_dict[name + ".mask"] = module.mask.cpu()
-            diff_dict[name + ".coeff"] = module.coeff.cpu()
+#     for name, module in finetuned_compressed_model.named_modules():
+#         if isinstance(module, BinaryDiff):
+#             print(module.mask)
+#             diff_dict[name + ".mask"] = module.mask.cpu()
+#             print(module.coeff)
+#             diff_dict[name + ".coeff"] = module.coeff.cpu()
 
-    for name, param in finetuned_compressed_model.named_parameters():
-        if param.requires_grad:
-            diff_dict[name] = param.cpu()
-
-    torch.save(diff_dict, save_dir)
+#     torch.save(diff_dict, save_dir)
         
 
 def main(base_model_name, fintuned_model_name, device):
