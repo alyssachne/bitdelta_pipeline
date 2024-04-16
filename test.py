@@ -13,13 +13,12 @@ print("Dataset loaded.")
 base_model_name, finetuned_model_name = utils.select_model(choice)
 finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
 print("Tokenizer loaded.")
-compressed = compress(choice)
+ft_base = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name)
+ft_base.save_pretrained("saved/ft_base.safetensors")
+print("Original finetuned model saved.")
+ft_compressed = compress(choice)
 print("Model compressed.")
 print("\n")
-
-# for name, module in compressed_model.named_modules():
-#     print(f"Module: {name}, Weight: {module}")
-#     print("\n")
 
 def encode(text):
     tokenized_text = finetuned_tokenizer(text['sentence'], padding='max_length', truncation=True)
@@ -43,9 +42,9 @@ eval_args = TrainingArguments(
     logging_dir='./logs',
 )
 
-# Setup Trainer
+# Setup trainer
 trainer = Trainer(
-    model=compressed,
+    model=ft_compressed,
     args=eval_args,
     eval_dataset=encoded_dataset['validation'],
     compute_metrics=compute_metrics,
@@ -56,6 +55,29 @@ print("Evaluation started.")
 results = trainer.evaluate()
 print(results)
 
-compressed_model.save_diff(compressed, "diff.pt")
-
 print("Evaluation finished.")
+
+compressed_model.save_diff(ft_compressed, "saved/ft_compressed.safetensors")
+
+print("Model saved.")
+print("\n")
+
+test_model = compressed_model.load_diff(ft_base, "saved/ft_compressed.safetensors")
+
+print("Saved model and loaded.")
+
+# Setup test trainer
+trainer = Trainer(
+    model=test_model,
+    args=eval_args,
+    eval_dataset=encoded_dataset['validation'],
+    compute_metrics=compute_metrics,
+)
+
+print("Test evaluation started.")
+
+results = trainer.evaluate()
+
+print(results)
+
+print("Test evaluation finished.")

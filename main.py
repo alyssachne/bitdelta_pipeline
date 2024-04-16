@@ -138,10 +138,6 @@ def compress(choice):
 
     check_model_layers(base_model, finetuned_model)
 
-    # check_difference(base_model, finetuned_model, device)
-
-    # new_finetuned_weights = create_new_finetuned_weights(base_model, finetuned_model, device)
-
     compressed_model = create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device)
 
     return compressed_model

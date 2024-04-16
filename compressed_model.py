@@ -12,13 +12,8 @@ class BinaryDiff(nn.Module):
         super().__init__()
         diff = finetune - base
         quantile = diff.float().abs().mean()
-
-        # mask = torch.ones_like(diff)
-        # mask[diff < 0] = 0
-        # mask = pack(mask.bool().T)
         # note: use int8 to save memory
         mask = torch.where(diff > 0, 1, 0).to(base.device).to(torch.int8)
-
 
         self.register_buffer("mask", mask.T)
         self.register_buffer("base", base.T)
@@ -37,8 +32,6 @@ class BinaryDiff(nn.Module):
 
     def forward(self, x):
         repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
-        # print(x.size(), self.base.size(), self.coeff, self.mask.size())
-        # print("\n")
 
         # convert datatype of x
         t_base = self.base.to(x.dtype)
@@ -50,9 +43,6 @@ def compress_diff(base_model, finetuned_model, finetuned_compressed_model, devic
     def compress_module(parent_name, parent_module, name, module, device):
         # target_device = submodule.weight.device
         processed_name = parent_name.replace("distilbert.", '', 1)
-        # print(f"Parent module: {processed_name}")
-        # print(f"Compressing module: {name}")
-        # print(f"{processed_name}.{name}")
         
         base_weight = base_model.get_submodule(f"{processed_name}.{name}").weight.detach().to(device)
         if base_weight.is_meta:
@@ -74,15 +64,11 @@ def compress_diff(base_model, finetuned_model, finetuned_compressed_model, devic
         torch.cuda.empty_cache()
         setattr(parent_module, name, compressed)
 
-    def recurse_and_replace(parent_name, parent_module):
+    for parent_name, parent_module in finetuned_compressed_model.named_modules():
         for name, module in list(parent_module.named_children()):
             if hasattr(module, "weight") and "lin" in name:
                 # print(f"Compressing and replacing module: {name}")
                 compress_module(parent_name, parent_module, name, module, device)
-
-    for name, module in finetuned_compressed_model.named_modules():
-        # print(f"Compressing and replacing module: {name}")
-        recurse_and_replace(name, module)
             
 
 def save_diff(finetuned_compressed_model, save_dir):
@@ -93,51 +79,19 @@ def save_diff(finetuned_compressed_model, save_dir):
             diff_dict[name + ".mask"] = module.mask
             diff_dict[name + ".coeff"] = module.coeff
 
-    for name, param in finetuned_compressed_model.named_parameters():
-        if param.requires_grad:
-            diff_dict[name] = param
-
     torch.save(diff_dict, save_dir)
 
+@torch.no_grad()
+def load_diff(model, diff_dir):
+    device = model.device
+    diff_dict = torch.load(diff_dir)
 
-# class CompressedModel(nn.Module):
-#     def __init__(self, base_model, finetuned_model, device):
-#         """
-#         Precondition: base_model and finetuned_model are of the same architecture
-#         """
-#         super(CompressedModel, self).__init__()
-#         # for each layer in both model
-#         # compute the difference between them
-#         for layer in base_model.state_dict().keys():
-#             curr_base_weights = base_model.state_dict()[layer]
-#             curr_ft_weights = finetuned_model.state_dict()[layer]
+    for name, module in model.named_modules():
+        if name + ".mask" in diff_dict:
+            coeff = diff_dict[name + ".coeff"].to(device)
+            mask = diff_dict[name + ".mask"].to(device)
+            weight = mask * coeff
 
-#             if curr_base_weights.is_meta:
-#                 curr_base_weights = torch.zeros(curr_base_weights.size())
-#             if curr_ft_weights.is_meta:
-#                 curr_ft_weights = torch.zeros(curr_ft_weights.size())
+            module.weight.add_(weight.T.to(module.weight.dtype))
 
-#             base_weights = curr_base_weights.to(device)
-#             finetuned_weights = curr_ft_weights.to(device)
-
-#             # convert weights to positive/negative mask
-#             # 1 if finetuned weight is greater than base weight
-#             # -1 otherwise
-#             diff = torch.where(finetuned_weights >= base_weights, 1.0, -1.0)
-#             diff = diff.to(device)
-#             # store the mask in the compressed model
-#             self.register_parameter("mask", nn.Parameter(diff))
-#             # also, add the trainable bitdelta to parameters
-#             self.register_parameter("bitdelta", nn.Parameter(torch.tensor(0.5)))
-
-#     def forward(self, x, base_model):
-#         # for each layer in the model
-#         for layer in self.state_dict().keys():
-#             base_weights = base_model.state_dict()[layer]
-#             mask = self.state_dict()["mask"]
-#             bitdelta = self.state_dict()["bitdelta"]
-#             # compute the compressed weights
-#             compressed_weights = base_weights + bitdelta * mask
-#             # apply the compressed weights to the input
-#             x = torch.matmul(x, compressed_weights)
-#         return x
+    return model
