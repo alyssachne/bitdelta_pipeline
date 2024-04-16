@@ -17,9 +17,9 @@ compressed_model = compress(choice)
 print("Model compressed.")
 print("\n")
 
-# for name, module in compressed_model.named_modules():
-#     for submodule_name, submodule in module.named_children():
-#         print(f"Module: {name}, Submodule: {submodule_name, submodule}")
+for name, module in compressed_model.named_modules():
+    print(f"Module: {name}, Weight: {module}")
+    print("\n")
 
 def encode(text):
     tokenized_text = finetuned_tokenizer(text['sentence'], padding='max_length', truncation=True)
