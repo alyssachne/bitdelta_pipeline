@@ -9,10 +9,11 @@ import transformers
 from transformers import AutoModel, AutoTokenizer, AutoConfig
 import dataset
 import os
-
+import logging
 from typing import Tuple
 from compressed_model import BinaryDiff
 
+logger = logging.getLogger('my_logger')
 
 def load_model(model_name, device, memory_map=None) -> AutoModel:
     """
@@ -57,10 +58,10 @@ def get_device() -> torch.device:
     # check for cuda availability
     if torch.cuda.is_available():
         device = torch.device("cuda")
-        print("Using GPU:", torch.cuda.get_device_name())
+        logger.info("Using GPU:", torch.cuda.get_device_name())
     else:
         device = torch.device("cpu")
-        print("Using CPU")
+        logger.info("Using CPU")
 
     return device
 
@@ -70,27 +71,39 @@ def select_model(c: int):
     Put your model names here.
     """
     if c == 1:
-        base = "google-bert/bert-base-cased"
-        finetuned = "piggyss/bert-finetuned-ner"
+        base = "google/fnet-base"
+        finetuned = "gchhablani/fnet-base-finetuned-sst2"
     elif c == 2:
-        return "CausalLM/14B"
+        base = "google-bert/bert-base-cased"
+        finetuned = "gchhablani/bert-base-cased-finetuned-sst2"
     elif c == 3:
         base = "distilbert/distilbert-base-uncased"
         finetuned = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
     elif c == 4:
-        base = 'distilbert/distilroberta-base'
-        finetuned = 'mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis'
+        base = "google/fnet-base"
+        finetuned = "gchhablani/fnet-base-finetuned-sst2"
     return base, finetuned
 
+def get_model_size(path):
+    # Get the size of the file in bytes
+    file_size = os.path.getsize(path)
+    return file_size
 
+def compress_rate(original_path, compressed_path):
+    original_size = get_model_size(original_path)
+    compressed_size = get_model_size(compressed_path)
+    logger.info(f"Original size: {original_size} bytes")
+    logger.info(f"Compressed size: {compressed_size} bytes")
+    return (original_size - compressed_size) / original_size
+    
 # def save_diff(finetuned_compressed_model, save_dir):
 #     diff_dict = {}
 
 #     for name, module in finetuned_compressed_model.named_modules():
 #         if isinstance(module, BinaryDiff):
-#             print(module.mask)
+#             logger.info(module.mask)
 #             diff_dict[name + ".mask"] = module.mask.cpu()
-#             print(module.coeff)
+#             logger.info(module.coeff)
 #             diff_dict[name + ".coeff"] = module.coeff.cpu()
 
 #     torch.save(diff_dict, save_dir)
@@ -99,19 +112,19 @@ def select_model(c: int):
 def main(base_model_name, fintuned_model_name, device):
     base_model = load_model(base_model_name, device)
     base_tokenizer = load_tokenizer(base_model_name)
-    print("Base Model:")
-    print(base_model.config)
-    print(base_tokenizer.vocab_size)
-    # print(base_config)
+    logger.info("Base Model:")
+    logger.info(base_model.config)
+    logger.info(base_tokenizer.vocab_size)
+    # logger.info(base_config)
 
-    print("Fintuned Model: ")
+    logger.info("Fintuned Model: ")
     fintuned_model = load_model(fintuned_model_name, device)
     fintuned_tokenizer = load_tokenizer(fintuned_model_name)
-    print(fintuned_model.config)
-    print(fintuned_tokenizer.vocab_size)
+    logger.info(fintuned_model.config)
+    logger.info(fintuned_tokenizer.vocab_size)
 
     # corrs, stddevs = find_corr_stddev(base_model, fintuned_model)
-    # print(corrs, stddevs)
+    # logger.info(corrs, stddevs)
 
 
 if __name__ == "__main__":
