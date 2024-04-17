@@ -59,6 +59,7 @@ Other Tasks: [financial_phrasebank](https://huggingface.co/datasets/financial_ph
 
 ```
 python test.py
+srun --gres gpu --partition=csc413 python3 test.py 
 ```
 
 ## Demo
