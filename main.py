@@ -122,7 +122,7 @@ def create_new_finetuned_weights(base_model, finetuned_model, device):
 
 
 def create_new_finetuned_model(base_model, finetuned_model, finetuned_model_name, device):
-    compressed_model = AutoModelForSequenceClassification.from_pretrained(finetuned_model_name).to(device)
+    compressed_model = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name).to(device)
     compress_diff(base_model, finetuned_model, compressed_model, device)
     return compressed_model
 

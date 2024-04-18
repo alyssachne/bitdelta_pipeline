@@ -80,8 +80,8 @@ def select_model(c: int):
         base = "distilbert/distilbert-base-uncased"
         finetuned = "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
     elif c == 4:
-        base = "google/fnet-base"
-        finetuned = "gchhablani/fnet-base-finetuned-sst2"
+        base = "distilbert/distilbert-base-uncased"
+        finetuned = "Akash7897/distilbert-base-uncased-finetuned-sst2"
     return base, finetuned
 
 def get_model_size(path):

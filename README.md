@@ -60,7 +60,7 @@ Other Tasks: [financial_phrasebank](https://huggingface.co/datasets/financial_ph
 ```
 python test.py
 srun --gres gpu --partition=csc413 python3 test.py 
-srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "google-bert/bert-base-cased" --finetuned_model "gchhablani/bert-base-cased-finetuned-sst2" --dataset "glue" --subdata "sst2"
+srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "google/fnet-large" --finetuned_model "gchhablani/fnet-large-finetuned-sst2" --dataset "glue" --subdata "sst2"
 ```
 
 ## Demo

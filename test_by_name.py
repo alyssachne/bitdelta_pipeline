@@ -31,7 +31,7 @@ def main(args):
         raise ValueError(f"Subdata {subdata} not supported.")
 
 
-    finetuned_tokenizer = setup_tokenizer(base_model_name, logger)
+    tokenizer = setup_tokenizer(base_model_name, finetuned_model_name, logger)
 
     def encode(text):
         # tokenized_text = finetuned_tokenizer(text['sentence'], padding='max_length', truncation=True)
@@ -39,8 +39,8 @@ def main(args):
         kargs = (
             (text[sentence1_key],) if sentence2_key is None else (text[sentence1_key], text[sentence2_key])
         )
-        result = finetuned_tokenizer(*kargs, padding='max_length', truncation=True)
-
+        result = tokenizer(*kargs, padding='max_length', truncation=True)
+       
         return result
 
     ft_base_path = os.path.join(root_dir, 'ft_base.safetensors')
@@ -90,6 +90,25 @@ def main(args):
     compressed_model.save_diff(ft_compressed, compressed_path)
 
     logger.info("Model saved.")
+    test_model = compressed_model.load_diff(ft_base, compressed_path)
+
+    logger.info("Saved model and loaded.")
+
+    # Setup test trainer
+    trainer = Trainer(
+        model=test_model,
+        args=eval_args,
+        eval_dataset=encoded_dataset['validation'],
+        compute_metrics=compute_metrics,
+    )
+
+    logger.info("Test evaluation started.")
+
+    results = trainer.evaluate()
+
+    logger.info(results)
+
+    logger.info("Test evaluation finished.")
 
     ft_base_model_path = os.path.join(ft_base_path, "pytorch_model.bin")
     compress_rate = utils.compress_rate(ft_base_model_path, compressed_path)

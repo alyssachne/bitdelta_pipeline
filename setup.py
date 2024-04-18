@@ -43,8 +43,12 @@ def setup_dataset(dataset_name, subdata, logger):
     
     return dataset
 
-def setup_tokenizer(model_name, logger):
-    tokenizer = utils.load_tokenizer(model_name)
+def setup_tokenizer(model_name, finetuned_model_name, logger):
+    try:
+        tokenizer = utils.load_tokenizer(finetuned_model_name)
+    except:
+        tokenizer = utils.load_tokenizer(model_name)
+
     logger.info("Tokenizer loaded.")
     return tokenizer
 

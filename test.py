@@ -34,9 +34,10 @@ logger.addHandler(fh)
 dataset = get_dataset('glue', "sst2")
 logger.info("Dataset loaded.")
 
-finetuned_tokenizer = utils.load_tokenizer(base_model_name)
+finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
+
 logger.info("Tokenizer loaded.")
-ft_base = AutoModelForSequenceClassification.from_pretrained(finetuned_model_name)
+ft_base = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name)
 ft_base_path = os.path.join(root_dir, 'ft_base.safetensors')
 ft_base.save_pretrained(ft_base_path)
 logger.info("Original finetuned model saved.")
@@ -57,8 +58,9 @@ accuracy_metric = load_metric('accuracy')
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     predictions = logits.argmax(axis=-1)
-    accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
+    #accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
     other_metric = metric.compute(predictions=predictions, references=labels)
+    return other_metric
     return {"accuracy": accuracy, "other_metric": other_metric}
 
 # Evaluation arguments

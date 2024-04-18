@@ -1,0 +1,17 @@
+2024-04-17 23:32:04,608 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-17 23:32:07,780 - my_logger - INFO - Dataset glue-stsb loaded.
+2024-04-17 23:32:08,628 - my_logger - INFO - Tokenizer loaded.
+2024-04-17 23:32:17,816 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-stsb saved.
+2024-04-17 23:32:19,183 - my_logger - INFO - Structure of both models are same
+2024-04-17 23:32:20,889 - my_logger - INFO - Model compressed.
+2024-04-17 23:32:24,501 - my_logger - INFO - Evaluation started.
+2024-04-17 23:32:41,287 - my_logger - INFO - {'eval_loss': 0.7877740263938904, 'eval_accuracy': {'accuracy': 0.22933333333333333}, 'eval_other_metric': {'pearson': nan, 'spearmanr': nan}, 'eval_runtime': 16.7835, 'eval_samples_per_second': 89.374, 'eval_steps_per_second': 5.601}
+2024-04-17 23:32:41,287 - my_logger - INFO - Evaluation finished.
+2024-04-17 23:32:41,290 - my_logger - INFO - Model saved.
+2024-04-17 23:32:41,291 - my_logger - INFO - Saved model and loaded.
+2024-04-17 23:32:41,348 - my_logger - INFO - Test evaluation started.
+2024-04-17 23:32:57,965 - my_logger - INFO - {'eval_loss': 0.7877740263938904, 'eval_accuracy': {'accuracy': 0.22933333333333333}, 'eval_other_metric': {'pearson': nan, 'spearmanr': nan}, 'eval_runtime': 16.6149, 'eval_samples_per_second': 90.281, 'eval_steps_per_second': 5.658}
+2024-04-17 23:32:57,965 - my_logger - INFO - Test evaluation finished.
+2024-04-17 23:32:57,966 - my_logger - INFO - Original size: 331481657 bytes
+2024-04-17 23:32:57,966 - my_logger - INFO - Compressed size: 443 bytes
+2024-04-17 23:32:57,966 - my_logger - INFO - The compression rate is 1.3364238733728786e-06

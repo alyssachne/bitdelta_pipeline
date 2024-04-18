@@ -1,0 +1,17 @@
+2024-04-17 23:31:09,715 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-17 23:31:14,254 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-17 23:31:14,382 - my_logger - INFO - Tokenizer loaded.
+2024-04-17 23:31:17,343 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-sst2 saved.
+2024-04-17 23:31:18,787 - my_logger - INFO - Structure of both models are same
+2024-04-17 23:31:20,411 - my_logger - INFO - Model compressed.
+2024-04-17 23:31:39,017 - my_logger - INFO - Evaluation started.
+2024-04-17 23:31:48,905 - my_logger - INFO - {'eval_loss': 0.46113041043281555, 'eval_accuracy': {'accuracy': 0.893348623853211}, 'eval_other_metric': {'accuracy': 0.893348623853211}, 'eval_runtime': 9.8857, 'eval_samples_per_second': 88.209, 'eval_steps_per_second': 5.564}
+2024-04-17 23:31:48,905 - my_logger - INFO - Evaluation finished.
+2024-04-17 23:31:48,908 - my_logger - INFO - Model saved.
+2024-04-17 23:31:48,909 - my_logger - INFO - Saved model and loaded.
+2024-04-17 23:31:48,974 - my_logger - INFO - Test evaluation started.
+2024-04-17 23:31:58,507 - my_logger - INFO - {'eval_loss': 0.46113041043281555, 'eval_accuracy': {'accuracy': 0.893348623853211}, 'eval_other_metric': {'accuracy': 0.893348623853211}, 'eval_runtime': 9.531, 'eval_samples_per_second': 91.491, 'eval_steps_per_second': 5.771}
+2024-04-17 23:31:58,508 - my_logger - INFO - Test evaluation finished.
+2024-04-17 23:31:58,508 - my_logger - INFO - Original size: 331484729 bytes
+2024-04-17 23:31:58,508 - my_logger - INFO - Compressed size: 443 bytes
+2024-04-17 23:31:58,508 - my_logger - INFO - The compression rate is 1.3364114882046347e-06

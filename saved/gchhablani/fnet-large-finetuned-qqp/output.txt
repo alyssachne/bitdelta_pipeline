@@ -1,0 +1,7 @@
+2024-04-17 23:34:03,745 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-17 23:34:07,762 - my_logger - INFO - Dataset glue-qqp loaded.
+2024-04-17 23:34:08,158 - my_logger - INFO - Tokenizer loaded.
+2024-04-17 23:34:34,535 - my_logger - INFO - Original finetuned model gchhablani/fnet-large-finetuned-qqp saved.
+2024-04-17 23:34:39,685 - my_logger - INFO - Structure of both models are same
+2024-04-17 23:34:42,464 - my_logger - INFO - Model compressed.
+2024-04-17 23:39:23,025 - my_logger - INFO - Evaluation started.
