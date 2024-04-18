@@ -1,9 +1,21 @@
 import os
 import logging
-from transformers import AutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification, DistilBertForSequenceClassification
 import utils
 from dataset import get_dataset
 from datasets import load_metric
+
+task_to_keys = {
+    "cola": ("sentence", None),
+    "mnli": ("premise", "hypothesis"),
+    "mrpc": ("sentence1", "sentence2"),
+    "qnli": ("question", "sentence"),
+    "qqp": ("question1", "question2"),
+    "rte": ("sentence1", "sentence2"),
+    "sst2": ("sentence", None),
+    "stsb": ("sentence1", "sentence2"),
+    "wnli": ("sentence1", "sentence2"),
+}
 
 def setup_logger(root_dir):
     logger = logging.getLogger('my_logger')
@@ -24,10 +36,11 @@ def setup_logger(root_dir):
 def setup_dataset(dataset_name, subdata, logger):
     if subdata:
         dataset = get_dataset(dataset_name, subdata)
+        logger.info(f"Dataset {dataset_name}-{subdata} loaded.")
     else:
         dataset = get_dataset(dataset_name)
-
-    logger.info("Dataset loaded.")
+        logger.info(f"Dataset {dataset_name} loaded.")
+    
     return dataset
 
 def setup_tokenizer(model_name, logger):
@@ -38,7 +51,7 @@ def setup_tokenizer(model_name, logger):
 def setup_and_save_original_model(finetuned_model_name, ft_base_path, logger):
     ft_base = AutoModelForSequenceClassification.from_pretrained(finetuned_model_name)
     ft_base.save_pretrained(ft_base_path)
-    logger.info("Original finetuned model saved.")
+    logger.info(f"Original finetuned model {finetuned_model_name} saved.")
     return ft_base
 
 def setup_metric(dataset, subset):
@@ -48,6 +61,12 @@ def setup_metric(dataset, subset):
         metric = load_metric(dataset)
 
     return metric
+
+def setup_subdata_key(subdata):
+
+    sentence1_key, sentence2_key = task_to_keys[subdata]
+
+    return sentence1_key, sentence2_key
 
 def setup_logger(finetuned_model_name):
 
