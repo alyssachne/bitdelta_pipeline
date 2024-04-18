@@ -13,12 +13,19 @@ print("Dataset loaded.")
 base_model_name, finetuned_model_name = utils.select_model(choice)
 finetuned_tokenizer = utils.load_tokenizer(finetuned_model_name)
 print("Tokenizer loaded.")
-ft_base = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name)
-ft_base.save_pretrained("saved/ft_base.safetensors")
+base_model = DistilBertForSequenceClassification.from_pretrained(base_model_name)
+finetuned_model = DistilBertForSequenceClassification.from_pretrained(finetuned_model_name)
+base_model.save_pretrained("saved/ft_base")
 print("Original finetuned model saved.")
 ft_compressed = compress(choice)
 print("Model compressed.")
 print("\n")
+
+#check compressed model architecture
+print(base_model)
+print("\n")
+print(finetuned_model)
+
 
 def encode(text):
     tokenized_text = finetuned_tokenizer(text['sentence'], padding='max_length', truncation=True)
@@ -62,7 +69,7 @@ compressed_model.save_diff(ft_compressed, "saved/ft_compressed.safetensors")
 print("Model saved.")
 print("\n")
 
-test_model = compressed_model.load_diff(ft_base, "saved/ft_compressed.safetensors")
+test_model = compressed_model.load_diff(base_model, "saved/ft_compressed.safetensors")
 
 print("Saved model and loaded.")
 
