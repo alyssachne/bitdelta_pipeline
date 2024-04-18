@@ -9,8 +9,7 @@ import logging
 import os
 
 choice = 4
-# ["mnli", "mnli_mismatched", "mnli_matched", "qnli", "rte", "wnli", "hans"]
-# 'mrpc' or 'qqp'
+
 base_model_name, finetuned_model_name = utils.select_model(choice)
 root_dir = f"saved/{finetuned_model_name}"
 if not os.path.exists(root_dir):

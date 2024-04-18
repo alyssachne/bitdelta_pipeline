@@ -94,7 +94,7 @@ def compress_rate(original_path, compressed_path):
     compressed_size = get_model_size(compressed_path)
     logger.info(f"Original size: {original_size} bytes")
     logger.info(f"Compressed size: {compressed_size} bytes")
-    return (original_size - compressed_size) / original_size
+    return compressed_size / original_size
     
 # def save_diff(finetuned_compressed_model, save_dir):
 #     diff_dict = {}
