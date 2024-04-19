@@ -1,0 +1,11 @@
+numpy
+torchvision
+matplotlib
+Pillow
+scipy
+huggingface_hub
+transformers
+datasets
+accelerate
+scikit-learn
+safetensors
