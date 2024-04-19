@@ -1,17 +1,17 @@
-2024-04-17 22:17:34,078 - my_logger - WARNING - For now the dataset can only comes from the hub.
-2024-04-17 22:17:37,323 - my_logger - INFO - Dataset glue-qnli loaded.
-2024-04-17 22:17:37,896 - my_logger - INFO - Tokenizer loaded.
-2024-04-17 22:17:41,920 - my_logger - INFO - Original finetuned model gchhablani/bert-base-cased-finetuned-qnli saved.
-2024-04-17 22:17:43,489 - my_logger - INFO - Structure of both models are same
-2024-04-17 22:17:45,378 - my_logger - INFO - Model compressed.
-2024-04-17 22:19:38,788 - my_logger - INFO - Evaluation started.
-2024-04-17 22:21:07,446 - my_logger - INFO - {'eval_loss': 0.39857935905456543, 'eval_accuracy': {'accuracy': 0.9099395936298736}, 'eval_other_metric': {'accuracy': 0.9099395936298736}, 'eval_runtime': 88.6553, 'eval_samples_per_second': 61.621, 'eval_steps_per_second': 3.858}
-2024-04-17 22:21:07,446 - my_logger - INFO - Evaluation finished.
-2024-04-17 22:21:07,449 - my_logger - INFO - Model saved.
-2024-04-17 22:21:07,450 - my_logger - INFO - Saved model and loaded.
-2024-04-17 22:21:07,534 - my_logger - INFO - Test evaluation started.
-2024-04-17 22:22:42,076 - my_logger - INFO - {'eval_loss': 0.39857935905456543, 'eval_accuracy': {'accuracy': 0.9099395936298736}, 'eval_other_metric': {'accuracy': 0.9099395936298736}, 'eval_runtime': 94.5397, 'eval_samples_per_second': 57.785, 'eval_steps_per_second': 3.618}
-2024-04-17 22:22:42,077 - my_logger - INFO - Test evaluation finished.
-2024-04-17 22:22:42,078 - my_logger - INFO - Original size: 433312817 bytes
-2024-04-17 22:22:42,078 - my_logger - INFO - Compressed size: 443 bytes
-2024-04-17 22:22:42,078 - my_logger - INFO - The compression rate is 1.0223560961502784e-06
+2024-04-18 18:45:18,291 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 18:45:21,636 - my_logger - INFO - Dataset glue-qnli loaded.
+2024-04-18 18:45:21,780 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 18:45:25,769 - my_logger - INFO - Original finetuned model gchhablani/bert-base-cased-finetuned-qnli saved.
+2024-04-18 18:45:27,112 - my_logger - INFO - Structure of both models are same
+2024-04-18 18:45:41,861 - my_logger - INFO - Model compressed.
+2024-04-18 18:45:43,555 - my_logger - INFO - Evaluation started.
+2024-04-18 18:48:20,846 - my_logger - INFO - {'eval_loss': 0.761024534702301, 'eval_accuracy': {'accuracy': 0.6760021965952773}, 'eval_other_metric': {'accuracy': 0.6760021965952773}, 'eval_runtime': 157.2884, 'eval_samples_per_second': 34.732, 'eval_steps_per_second': 2.174}
+2024-04-18 18:48:20,846 - my_logger - INFO - Evaluation finished.
+2024-04-18 18:48:21,589 - my_logger - INFO - Model saved.
+2024-04-18 18:48:23,006 - my_logger - INFO - Saved model and loaded.
+2024-04-18 18:48:23,078 - my_logger - INFO - Test evaluation started.
+2024-04-18 18:49:53,916 - my_logger - INFO - {'eval_loss': 1.2285386323928833, 'eval_accuracy': {'accuracy': 0.6317041918359876}, 'eval_other_metric': {'accuracy': 0.6317041918359876}, 'eval_runtime': 90.8359, 'eval_samples_per_second': 60.141, 'eval_steps_per_second': 3.765}
+2024-04-18 18:49:53,917 - my_logger - INFO - Test evaluation finished.
+2024-04-18 18:49:53,917 - my_logger - INFO - Original size: 433312817 bytes
+2024-04-18 18:49:53,918 - my_logger - INFO - Compressed size: 176416945 bytes
+2024-04-18 18:49:53,918 - my_logger - INFO - The compression rate is 0.40713530290058325

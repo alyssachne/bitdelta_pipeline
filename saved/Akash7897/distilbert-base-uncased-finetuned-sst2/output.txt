@@ -1,0 +1,17 @@
+2024-04-18 20:23:05,297 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 20:23:08,260 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-18 20:23:08,358 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 20:23:10,656 - my_logger - INFO - Original finetuned model Akash7897/distilbert-base-uncased-finetuned-sst2 saved.
+2024-04-18 20:23:11,687 - my_logger - INFO - Structure of both models are same
+2024-04-18 20:23:20,012 - my_logger - INFO - Model compressed.
+2024-04-18 20:23:21,669 - my_logger - INFO - Evaluation started.
+2024-04-18 20:23:33,786 - my_logger - INFO - {'eval_loss': 0.41964301466941833, 'eval_accuracy': {'accuracy': 0.8474770642201835}, 'eval_other_metric': {'accuracy': 0.8474770642201835}, 'eval_runtime': 12.1146, 'eval_samples_per_second': 71.979, 'eval_steps_per_second': 4.54}
+2024-04-18 20:23:33,786 - my_logger - INFO - Evaluation finished.
+2024-04-18 20:23:34,385 - my_logger - INFO - Model saved.
+2024-04-18 20:23:35,317 - my_logger - INFO - Saved model and loaded.
+2024-04-18 20:23:35,363 - my_logger - INFO - Test evaluation started.
+2024-04-18 20:23:42,193 - my_logger - INFO - {'eval_loss': 0.42143136262893677, 'eval_accuracy': {'accuracy': 0.8623853211009175}, 'eval_other_metric': {'accuracy': 0.8623853211009175}, 'eval_runtime': 6.8274, 'eval_samples_per_second': 127.72, 'eval_steps_per_second': 8.056}
+2024-04-18 20:23:42,193 - my_logger - INFO - Test evaluation finished.
+2024-04-18 20:23:42,194 - my_logger - INFO - Original size: 267854125 bytes
+2024-04-18 20:23:42,194 - my_logger - INFO - Compressed size: 140292909 bytes
+2024-04-18 20:23:42,194 - my_logger - INFO - The compression rate is 0.5237660946980003

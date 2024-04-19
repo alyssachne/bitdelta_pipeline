@@ -25,7 +25,7 @@ def load_model(model_name, device, memory_map=None) -> AutoModel:
     if device != 'auto' or not isinstance(device, list):
         return AutoModel.from_pretrained(
             model_name,
-            torch_dtype=torch.bfloat16,
+            # torch_dtype=torch.bfloat16,
             low_cpu_mem_usage=True
         )
     

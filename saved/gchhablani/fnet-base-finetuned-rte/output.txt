@@ -1,17 +1,17 @@
-2024-04-17 23:30:36,277 - my_logger - WARNING - For now the dataset can only comes from the hub.
-2024-04-17 23:30:40,488 - my_logger - INFO - Dataset glue-rte loaded.
-2024-04-17 23:30:40,916 - my_logger - INFO - Tokenizer loaded.
-2024-04-17 23:30:49,649 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-rte saved.
-2024-04-17 23:30:51,057 - my_logger - INFO - Structure of both models are same
-2024-04-17 23:30:52,762 - my_logger - INFO - Model compressed.
-2024-04-17 23:30:57,114 - my_logger - INFO - Evaluation started.
-2024-04-17 23:31:00,586 - my_logger - INFO - {'eval_loss': 0.6963563561439514, 'eval_accuracy': {'accuracy': 0.628158844765343}, 'eval_other_metric': {'accuracy': 0.628158844765343}, 'eval_runtime': 3.4695, 'eval_samples_per_second': 79.838, 'eval_steps_per_second': 5.188}
-2024-04-17 23:31:00,587 - my_logger - INFO - Evaluation finished.
-2024-04-17 23:31:00,589 - my_logger - INFO - Model saved.
-2024-04-17 23:31:00,590 - my_logger - INFO - Saved model and loaded.
-2024-04-17 23:31:00,646 - my_logger - INFO - Test evaluation started.
-2024-04-17 23:31:03,701 - my_logger - INFO - {'eval_loss': 0.6963563561439514, 'eval_accuracy': {'accuracy': 0.628158844765343}, 'eval_other_metric': {'accuracy': 0.628158844765343}, 'eval_runtime': 3.0521, 'eval_samples_per_second': 90.758, 'eval_steps_per_second': 5.898}
-2024-04-17 23:31:03,701 - my_logger - INFO - Test evaluation finished.
-2024-04-17 23:31:03,701 - my_logger - INFO - Original size: 331484729 bytes
-2024-04-17 23:31:03,701 - my_logger - INFO - Compressed size: 443 bytes
-2024-04-17 23:31:03,701 - my_logger - INFO - The compression rate is 1.3364114882046347e-06
+2024-04-18 19:20:23,954 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 19:20:27,334 - my_logger - INFO - Dataset glue-rte loaded.
+2024-04-18 19:20:27,465 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 19:20:30,868 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-rte saved.
+2024-04-18 19:20:32,225 - my_logger - INFO - Structure of both models are same
+2024-04-18 19:20:38,530 - my_logger - INFO - Model compressed.
+2024-04-18 19:20:39,282 - my_logger - INFO - Evaluation started.
+2024-04-18 19:20:44,567 - my_logger - INFO - {'eval_loss': 0.6730072498321533, 'eval_accuracy': {'accuracy': 0.6101083032490975}, 'eval_other_metric': {'accuracy': 0.6101083032490975}, 'eval_runtime': 5.283, 'eval_samples_per_second': 52.432, 'eval_steps_per_second': 3.407}
+2024-04-18 19:20:44,568 - my_logger - INFO - Evaluation finished.
+2024-04-18 19:20:45,253 - my_logger - INFO - Model saved.
+2024-04-18 19:20:46,348 - my_logger - INFO - Saved model and loaded.
+2024-04-18 19:20:46,398 - my_logger - INFO - Test evaluation started.
+2024-04-18 19:20:49,390 - my_logger - INFO - {'eval_loss': 0.6755459308624268, 'eval_accuracy': {'accuracy': 0.5992779783393501}, 'eval_other_metric': {'accuracy': 0.5992779783393501}, 'eval_runtime': 2.9889, 'eval_samples_per_second': 92.676, 'eval_steps_per_second': 6.022}
+2024-04-18 19:20:49,390 - my_logger - INFO - Test evaluation finished.
+2024-04-18 19:20:49,390 - my_logger - INFO - Original size: 331484729 bytes
+2024-04-18 19:20:49,390 - my_logger - INFO - Compressed size: 157891705 bytes
+2024-04-18 19:20:49,390 - my_logger - INFO - The compression rate is 0.4763166782262238

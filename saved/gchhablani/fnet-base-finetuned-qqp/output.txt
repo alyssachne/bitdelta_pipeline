@@ -1,17 +1,17 @@
-2024-04-17 23:10:26,940 - my_logger - WARNING - For now the dataset can only comes from the hub.
-2024-04-17 23:10:30,706 - my_logger - INFO - Dataset glue-qqp loaded.
-2024-04-17 23:10:30,817 - my_logger - INFO - Tokenizer loaded.
-2024-04-17 23:10:33,975 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-qqp saved.
-2024-04-17 23:10:36,720 - my_logger - INFO - Structure of both models are same
-2024-04-17 23:10:38,356 - my_logger - INFO - Model compressed.
-2024-04-17 23:15:21,552 - my_logger - INFO - Evaluation started.
-2024-04-17 23:22:54,823 - my_logger - INFO - {'eval_loss': 0.36894893646240234, 'eval_accuracy': {'accuracy': 0.8846153846153846}, 'eval_other_metric': {'accuracy': 0.8846153846153846, 'f1': 0.8464500839340378}, 'eval_runtime': 453.2678, 'eval_samples_per_second': 89.197, 'eval_steps_per_second': 5.575}
-2024-04-17 23:22:54,823 - my_logger - INFO - Evaluation finished.
-2024-04-17 23:22:54,826 - my_logger - INFO - Model saved.
-2024-04-17 23:22:54,827 - my_logger - INFO - Saved model and loaded.
-2024-04-17 23:22:54,903 - my_logger - INFO - Test evaluation started.
-2024-04-17 23:30:30,208 - my_logger - INFO - {'eval_loss': 0.36894893646240234, 'eval_accuracy': {'accuracy': 0.8846153846153846}, 'eval_other_metric': {'accuracy': 0.8846153846153846, 'f1': 0.8464500839340378}, 'eval_runtime': 455.3032, 'eval_samples_per_second': 88.798, 'eval_steps_per_second': 5.55}
-2024-04-17 23:30:30,209 - my_logger - INFO - Test evaluation finished.
-2024-04-17 23:30:30,209 - my_logger - INFO - Original size: 331484729 bytes
-2024-04-17 23:30:30,209 - my_logger - INFO - Compressed size: 443 bytes
-2024-04-17 23:30:30,209 - my_logger - INFO - The compression rate is 1.3364114882046347e-06
+2024-04-18 18:58:42,335 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 18:58:45,554 - my_logger - INFO - Dataset glue-qqp loaded.
+2024-04-18 18:58:45,677 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 18:58:48,595 - my_logger - INFO - Original finetuned model gchhablani/fnet-base-finetuned-qqp saved.
+2024-04-18 18:58:49,974 - my_logger - INFO - Structure of both models are same
+2024-04-18 18:58:56,291 - my_logger - INFO - Model compressed.
+2024-04-18 18:58:57,676 - my_logger - INFO - Evaluation started.
+2024-04-18 19:11:39,557 - my_logger - INFO - {'eval_loss': 0.4373718500137329, 'eval_accuracy': {'accuracy': 0.7869403907989116}, 'eval_other_metric': {'accuracy': 0.7869403907989116, 'f1': 0.679872156979337}, 'eval_runtime': 761.8778, 'eval_samples_per_second': 53.066, 'eval_steps_per_second': 3.317}
+2024-04-18 19:11:39,557 - my_logger - INFO - Evaluation finished.
+2024-04-18 19:11:40,187 - my_logger - INFO - Model saved.
+2024-04-18 19:11:41,401 - my_logger - INFO - Saved model and loaded.
+2024-04-18 19:11:41,469 - my_logger - INFO - Test evaluation started.
+2024-04-18 19:19:12,812 - my_logger - INFO - {'eval_loss': 0.43139511346817017, 'eval_accuracy': {'accuracy': 0.7932723225327727}, 'eval_other_metric': {'accuracy': 0.7932723225327727, 'f1': 0.7090035512847294}, 'eval_runtime': 451.3412, 'eval_samples_per_second': 89.577, 'eval_steps_per_second': 5.599}
+2024-04-18 19:19:12,813 - my_logger - INFO - Test evaluation finished.
+2024-04-18 19:19:12,813 - my_logger - INFO - Original size: 331484729 bytes
+2024-04-18 19:19:12,813 - my_logger - INFO - Compressed size: 157891705 bytes
+2024-04-18 19:19:12,813 - my_logger - INFO - The compression rate is 0.4763166782262238

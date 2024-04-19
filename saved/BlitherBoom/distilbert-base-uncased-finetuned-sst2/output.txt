@@ -1,0 +1,17 @@
+2024-04-18 20:21:37,534 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 20:21:40,666 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-18 20:21:40,775 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 20:21:43,663 - my_logger - INFO - Original finetuned model BlitherBoom/distilbert-base-uncased-finetuned-sst2 saved.
+2024-04-18 20:21:44,770 - my_logger - INFO - Structure of both models are same
+2024-04-18 20:21:53,093 - my_logger - INFO - Model compressed.
+2024-04-18 20:21:54,854 - my_logger - INFO - Evaluation started.
+2024-04-18 20:22:06,845 - my_logger - INFO - {'eval_loss': 0.27508026361465454, 'eval_accuracy': {'accuracy': 0.8910550458715596}, 'eval_other_metric': {'accuracy': 0.8910550458715596}, 'eval_runtime': 11.9889, 'eval_samples_per_second': 72.734, 'eval_steps_per_second': 4.588}
+2024-04-18 20:22:06,846 - my_logger - INFO - Evaluation finished.
+2024-04-18 20:22:07,434 - my_logger - INFO - Model saved.
+2024-04-18 20:22:08,419 - my_logger - INFO - Saved model and loaded.
+2024-04-18 20:22:08,466 - my_logger - INFO - Test evaluation started.
+2024-04-18 20:22:15,209 - my_logger - INFO - {'eval_loss': 0.2669396698474884, 'eval_accuracy': {'accuracy': 0.9071100917431193}, 'eval_other_metric': {'accuracy': 0.9071100917431193}, 'eval_runtime': 6.7402, 'eval_samples_per_second': 129.373, 'eval_steps_per_second': 8.16}
+2024-04-18 20:22:15,209 - my_logger - INFO - Test evaluation finished.
+2024-04-18 20:22:15,209 - my_logger - INFO - Original size: 267854125 bytes
+2024-04-18 20:22:15,209 - my_logger - INFO - Compressed size: 140292909 bytes
+2024-04-18 20:22:15,209 - my_logger - INFO - The compression rate is 0.5237660946980003

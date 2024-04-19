@@ -31,18 +31,21 @@ class BinaryDiff(nn.Module):
         del base, finetune, diff
 
     def forward(self, x):
-        repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
+        # repeated_mask = self.mask.unsqueeze(0).repeat(x.size(0), 1, 1)
+        t = self.base.dtype
 
         # convert datatype of x
-        t_base = self.base.to(x.dtype)
-        t_coeff = self.coeff.to(x.dtype)
-        repeated_mask = repeated_mask.to(x.dtype)
+        t_base = self.base
+        t_coeff = self.coeff.to(t)
+        # repeated_mask = repeated_mask.to(t)
+        repeated_mask = self.mask.to(t)
+        x = x.to(t)
         return x @ t_base + t_coeff * x @ repeated_mask
 
 def compress_diff(base_model, finetuned_model, finetuned_compressed_model, device):
-    def compress_module(parent_name, parent_module, name, module, device):
+    def compress_module(parent_name, parent_module, name, module, device, model_name):
         # target_device = submodule.weight.device
-        processed_name = parent_name.replace("distilbert.", '', 1)
+        processed_name = parent_name.replace(model_name, '', 1)
         
         base_weight = base_model.get_submodule(f"{processed_name}.{name}").weight.detach().to(device)
         if base_weight.is_meta:
@@ -64,11 +67,18 @@ def compress_diff(base_model, finetuned_model, finetuned_compressed_model, devic
         torch.cuda.empty_cache()
         setattr(parent_module, name, compressed)
 
+    model_name = None
+
     for parent_name, parent_module in finetuned_compressed_model.named_modules():
-        for name, module in list(parent_module.named_children()):
-            if hasattr(module, "weight") and "lin" in name:
-                # print(f"Compressing and replacing module: {name}")
-                compress_module(parent_name, parent_module, name, module, device)
+        for name, module in parent_module.named_children():
+            if not model_name: 
+                model_name = name + "."
+            if hasattr(module, "weight") and module._get_name() == "Linear":
+            # if hasattr(module, "weight") and "lin" in name:
+                try:
+                    compress_module(parent_name, parent_module, name, module, device, model_name)
+                except Exception as e:
+                    print(f"Error compressing module {name}: {e}")
             
 
 def save_diff(finetuned_compressed_model, save_dir):
@@ -78,6 +88,10 @@ def save_diff(finetuned_compressed_model, save_dir):
         if isinstance(module, BinaryDiff):
             diff_dict[name + ".mask"] = module.mask
             diff_dict[name + ".coeff"] = module.coeff
+
+    for name, param in finetuned_compressed_model.named_parameters():
+        if param.requires_grad:
+            diff_dict[name] = param
 
     torch.save(diff_dict, save_dir)
 
@@ -93,5 +107,7 @@ def load_diff(model, diff_dir):
             weight = mask * coeff
 
             module.weight.add_(weight.T.to(module.weight.dtype))
+        elif name + ".weight" in diff_dict:
+            module.weight = nn.Parameter(diff_dict[name + ".weight"].to(device).to(module.weight.dtype))
 
     return model

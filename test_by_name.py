@@ -1,10 +1,8 @@
 from datasets import load_metric
-from transformers import Trainer, TrainingArguments, AutoModelForSequenceClassification
+from transformers import Trainer, TrainingArguments
 
-from dataset import get_dataset
 from main_name import compress
 import utils, compressed_model
-import logging
 import os
 import argparse
 from setup import *
@@ -47,6 +45,7 @@ def main(args):
     ft_base = setup_and_save_original_model(finetuned_model_name, ft_base_path, logger)
 
     ft_compressed = compress(base_model_name, finetuned_model_name)
+
     logger.info("Model compressed.")
 
     accuracy_metric = load_metric('accuracy')
@@ -90,7 +89,8 @@ def main(args):
     compressed_model.save_diff(ft_compressed, compressed_path)
 
     logger.info("Model saved.")
-    test_model = compressed_model.load_diff(ft_base, compressed_path)
+    base = setup_model(base_model_name)
+    test_model = compressed_model.load_diff(base, compressed_path)
 
     logger.info("Saved model and loaded.")
 
@@ -117,10 +117,10 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test the compressed model.")
-    parser.add_argument("--base_model", type=str, help="The base model.")
-    parser.add_argument("--finetuned_model", type=str, help="The finetuned model.") 
-    parser.add_argument("--dataset", type=str, help="The dataset to evaluate performance, for now we only support glue.")
-    parser.add_argument("--subdata", type=str, help="The sub-dataset to evaluate on if given.", required=False)
+    parser.add_argument("--base_model", type=str, help="The base model.", default="google-bert/bert-base-uncased")
+    parser.add_argument("--finetuned_model", type=str, help="The finetuned model.", default="anirudh21/bert-base-uncased-finetuned-rte") 
+    parser.add_argument("--dataset", type=str, help="The dataset to evaluate performance, for now we only support glue.", default="glue")
+    parser.add_argument("--subdata", type=str, help="The sub-dataset to evaluate on if given.", required=False, default="rte")
     args = parser.parse_args()
 
     main(args)

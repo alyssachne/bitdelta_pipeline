@@ -1,7 +1,17 @@
-2024-04-17 23:34:03,745 - my_logger - WARNING - For now the dataset can only comes from the hub.
-2024-04-17 23:34:07,762 - my_logger - INFO - Dataset glue-qqp loaded.
-2024-04-17 23:34:08,158 - my_logger - INFO - Tokenizer loaded.
-2024-04-17 23:34:34,535 - my_logger - INFO - Original finetuned model gchhablani/fnet-large-finetuned-qqp saved.
-2024-04-17 23:34:39,685 - my_logger - INFO - Structure of both models are same
-2024-04-17 23:34:42,464 - my_logger - INFO - Model compressed.
-2024-04-17 23:39:23,025 - my_logger - INFO - Evaluation started.
+2024-04-18 18:55:59,015 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 18:56:02,713 - my_logger - INFO - Dataset glue-qqp loaded.
+2024-04-18 18:56:02,845 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 18:56:10,863 - my_logger - INFO - Original finetuned model gchhablani/fnet-large-finetuned-qqp saved.
+2024-04-18 18:56:15,854 - my_logger - INFO - Structure of both models are same
+2024-04-18 18:56:27,885 - my_logger - INFO - Model compressed.
+2024-04-18 18:56:29,174 - my_logger - INFO - Evaluation started.
+2024-04-18 19:42:45,287 - my_logger - INFO - {'eval_loss': 0.5095571279525757, 'eval_accuracy': {'accuracy': 0.796735097699728}, 'eval_other_metric': {'accuracy': 0.796735097699728, 'f1': 0.7758319694489908}, 'eval_runtime': 2776.1105, 'eval_samples_per_second': 14.564, 'eval_steps_per_second': 0.91}
+2024-04-18 19:42:45,288 - my_logger - INFO - Evaluation finished.
+2024-04-18 19:42:46,560 - my_logger - INFO - Model saved.
+2024-04-18 19:42:49,564 - my_logger - INFO - Saved model and loaded.
+2024-04-18 19:42:49,723 - my_logger - INFO - Test evaluation started.
+2024-04-18 20:07:12,422 - my_logger - INFO - {'eval_loss': 0.5633776187896729, 'eval_accuracy': {'accuracy': 0.7372743012614396}, 'eval_other_metric': {'accuracy': 0.7372743012614396, 'f1': 0.7341043356363272}, 'eval_runtime': 1462.696, 'eval_samples_per_second': 27.641, 'eval_steps_per_second': 1.728}
+2024-04-18 20:07:12,422 - my_logger - INFO - Test evaluation finished.
+2024-04-18 20:07:12,423 - my_logger - INFO - Original size: 947855609 bytes
+2024-04-18 20:07:12,423 - my_logger - INFO - Compressed size: 337095545 bytes
+2024-04-18 20:07:12,423 - my_logger - INFO - The compression rate is 0.3556401859093709

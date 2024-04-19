@@ -1,0 +1,17 @@
+2024-04-18 17:07:52,642 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 17:07:56,431 - my_logger - INFO - Dataset glue-qnli loaded.
+2024-04-18 17:07:56,919 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 17:08:05,929 - my_logger - INFO - Original finetuned model anirudh21/distilbert-base-uncased-finetuned-qnli saved.
+2024-04-18 17:08:06,948 - my_logger - INFO - Structure of both models are same
+2024-04-18 17:08:15,079 - my_logger - INFO - Model compressed.
+2024-04-18 17:10:25,221 - my_logger - INFO - Evaluation started.
+2024-04-18 17:11:45,020 - my_logger - INFO - {'eval_loss': 0.6972319483757019, 'eval_accuracy': {'accuracy': 0.5180303862346696}, 'eval_other_metric': {'accuracy': 0.5180303862346696}, 'eval_runtime': 79.7967, 'eval_samples_per_second': 68.462, 'eval_steps_per_second': 4.286}
+2024-04-18 17:11:45,020 - my_logger - INFO - Evaluation finished.
+2024-04-18 17:11:45,597 - my_logger - INFO - Model saved.
+2024-04-18 17:11:46,500 - my_logger - INFO - Saved model and loaded.
+2024-04-18 17:11:46,548 - my_logger - INFO - Test evaluation started.
+2024-04-18 17:12:30,532 - my_logger - INFO - {'eval_loss': 0.6896564364433289, 'eval_accuracy': {'accuracy': 0.5394471901885411}, 'eval_other_metric': {'accuracy': 0.5394471901885411}, 'eval_runtime': 43.9819, 'eval_samples_per_second': 124.21, 'eval_steps_per_second': 7.776}
+2024-04-18 17:12:30,532 - my_logger - INFO - Test evaluation finished.
+2024-04-18 17:12:30,532 - my_logger - INFO - Original size: 267854125 bytes
+2024-04-18 17:12:30,532 - my_logger - INFO - Compressed size: 140288877 bytes
+2024-04-18 17:12:30,532 - my_logger - INFO - The compression rate is 0.5237510417284035

@@ -1,0 +1,17 @@
+2024-04-18 20:26:25,598 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-18 20:26:28,828 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-18 20:26:28,941 - my_logger - INFO - Tokenizer loaded.
+2024-04-18 20:26:31,402 - my_logger - INFO - Original finetuned model vicclab/distilbert_sst2_finetuned saved.
+2024-04-18 20:26:32,441 - my_logger - INFO - Structure of both models are same
+2024-04-18 20:26:40,668 - my_logger - INFO - Model compressed.
+2024-04-18 20:26:42,210 - my_logger - INFO - Evaluation started.
+2024-04-18 20:26:54,194 - my_logger - INFO - {'eval_loss': 0.5620827078819275, 'eval_accuracy': {'accuracy': 0.7660550458715596}, 'eval_other_metric': {'accuracy': 0.7660550458715596}, 'eval_runtime': 11.9811, 'eval_samples_per_second': 72.781, 'eval_steps_per_second': 4.591}
+2024-04-18 20:26:54,194 - my_logger - INFO - Evaluation finished.
+2024-04-18 20:26:54,763 - my_logger - INFO - Model saved.
+2024-04-18 20:26:55,681 - my_logger - INFO - Saved model and loaded.
+2024-04-18 20:26:55,728 - my_logger - INFO - Test evaluation started.
+2024-04-18 20:27:02,473 - my_logger - INFO - {'eval_loss': 0.5957829356193542, 'eval_accuracy': {'accuracy': 0.7488532110091743}, 'eval_other_metric': {'accuracy': 0.7488532110091743}, 'eval_runtime': 6.7427, 'eval_samples_per_second': 129.325, 'eval_steps_per_second': 8.157}
+2024-04-18 20:27:02,474 - my_logger - INFO - Test evaluation finished.
+2024-04-18 20:27:02,474 - my_logger - INFO - Original size: 267854125 bytes
+2024-04-18 20:27:02,474 - my_logger - INFO - Compressed size: 140292909 bytes
+2024-04-18 20:27:02,474 - my_logger - INFO - The compression rate is 0.5237660946980003

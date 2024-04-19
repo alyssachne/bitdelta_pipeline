@@ -53,10 +53,14 @@ def setup_tokenizer(model_name, finetuned_model_name, logger):
     return tokenizer
 
 def setup_and_save_original_model(finetuned_model_name, ft_base_path, logger):
-    ft_base = AutoModelForSequenceClassification.from_pretrained(finetuned_model_name)
+    ft_base = setup_model(finetuned_model_name)
     ft_base.save_pretrained(ft_base_path)
     logger.info(f"Original finetuned model {finetuned_model_name} saved.")
     return ft_base
+
+def setup_model(model_name):
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    return model
 
 def setup_metric(dataset, subset):
     if subset:
