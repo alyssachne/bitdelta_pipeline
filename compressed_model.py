@@ -78,7 +78,7 @@ def compress_diff(base_model, finetuned_model, finetuned_compressed_model, devic
                 try:
                     compress_module(parent_name, parent_module, name, module, device, model_name)
                 except Exception as e:
-                    print(f"Error compressing module {name}: {e}")
+                    print(f"uncompressable module {name}: {e}")
             
 
 def save_diff(finetuned_compressed_model, save_dir):
