@@ -70,20 +70,20 @@ def main(args):
         report_to="none", 
     )
 
-    # Setup trainer
-    trainer = Trainer(
-        model=ft_compressed,
-        args=eval_args,
-        eval_dataset=encoded_dataset['validation'],
-        compute_metrics=compute_metrics,
-    )
+    # # Setup trainer
+    # trainer = Trainer(
+    #     model=ft_compressed,
+    #     args=eval_args,
+    #     eval_dataset=encoded_dataset['validation'],
+    #     compute_metrics=compute_metrics,
+    # )
 
-    logger.info("Evaluation started.")
+    # logger.info("Evaluation started.")
 
-    results = trainer.evaluate()
-    logger.info(results)
+    # results = trainer.evaluate()
+    # logger.info(results)
 
-    logger.info("Evaluation finished.")
+    # logger.info("Evaluation finished.")
 
     compressed_path = os.path.join(root_dir, 'ft_compressed.safetensors')
     compressed_model.save_diff(ft_compressed, compressed_path)
