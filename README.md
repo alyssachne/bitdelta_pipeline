@@ -47,7 +47,6 @@ Sentiment Analysis: [GLUE](https://huggingface.co/datasets/nyu-mll/glue)
 ```
 python test.py
 srun --gres gpu --partition=csc413 python3 test.py 
-srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "google-bert/bert-large-uncased" --finetuned_model "SarielSinLuo/bert-large-uncased-finetuned-rte" --dataset "glue" --subdata "rte"
 
 ```
 

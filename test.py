@@ -114,4 +114,4 @@ logger.info(results)
 
 logger.info("Test evaluation finished.")
 
-logger.info(f'The compression rate is {utils.compress_rate(os.path.join(ft_base_path, "pytorch_model.bin"), compressed_path)}')
+# logger.info(f'The compression rate is {utils.compress_rate(os.path.join(ft_base_path, "pytorch_model.bin"), compressed_path)}')
