@@ -111,9 +111,9 @@ def main(args):
 
     logger.info("Test evaluation finished.")
 
-    ft_base_model_path = os.path.join(ft_base_path, "pytorch_model.bin")
-    compress_rate = utils.compress_rate(ft_base_model_path, compressed_path)
-    logger.info(f'The compression rate is {compress_rate}')
+    # ft_base_model_path = os.path.join(ft_base_path, "pytorch_model.bin")
+    # compress_rate = utils.compress_rate(ft_base_model_path, compressed_path)
+    # logger.info(f'The compression rate is {compress_rate}')
 
 
 if __name__ == "__main__":
