@@ -1,0 +1,14 @@
+2024-04-19 10:04:05,822 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 10:04:08,888 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-19 10:04:09,705 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 10:04:12,099 - my_logger - INFO - Original finetuned model WeightWatcher/albert-large-v2-sst2 saved.
+2024-04-19 10:04:12,860 - my_logger - INFO - Structure of both models are same
+2024-04-19 10:04:15,302 - my_logger - INFO - Model compressed.
+2024-04-19 10:04:42,745 - my_logger - INFO - Model saved.
+2024-04-19 10:04:43,025 - my_logger - INFO - Saved model and loaded.
+2024-04-19 10:04:43,041 - my_logger - INFO - Test evaluation started.
+2024-04-19 10:05:30,225 - my_logger - INFO - {'eval_loss': 0.2753123641014099, 'eval_accuracy': {'accuracy': 0.8899082568807339}, 'eval_other_metric': {'accuracy': 0.8899082568807339}, 'eval_runtime': 47.1814, 'eval_samples_per_second': 18.482, 'eval_steps_per_second': 1.166}
+2024-04-19 10:05:30,225 - my_logger - INFO - Test evaluation finished.
+2024-04-19 10:05:30,226 - my_logger - INFO - Original size: 70753026 bytes
+2024-04-19 10:05:30,226 - my_logger - INFO - Compressed size: 32570818 bytes
+2024-04-19 10:05:30,226 - my_logger - INFO - The compression rate is 0.46034522961604496

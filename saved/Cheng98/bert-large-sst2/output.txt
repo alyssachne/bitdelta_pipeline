@@ -1,0 +1,14 @@
+2024-04-19 10:05:29,999 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 10:05:33,069 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-19 10:05:33,534 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 10:06:16,827 - my_logger - INFO - Original finetuned model Cheng98/bert-large-sst2 saved.
+2024-04-19 10:06:58,282 - my_logger - INFO - Structure of both models are same
+2024-04-19 10:07:32,569 - my_logger - INFO - Model compressed.
+2024-04-19 10:08:03,961 - my_logger - INFO - Model saved.
+2024-04-19 10:08:07,957 - my_logger - INFO - Saved model and loaded.
+2024-04-19 10:08:08,172 - my_logger - INFO - Test evaluation started.
+2024-04-19 10:08:50,207 - my_logger - INFO - {'eval_loss': 0.29391956329345703, 'eval_accuracy': {'accuracy': 0.9036697247706422}, 'eval_other_metric': {'accuracy': 0.9036697247706422}, 'eval_runtime': 42.0319, 'eval_samples_per_second': 20.746, 'eval_steps_per_second': 1.309}
+2024-04-19 10:08:50,207 - my_logger - INFO - Test evaluation finished.
+2024-04-19 10:08:50,207 - my_logger - INFO - Original size: 1334454193 bytes
+2024-04-19 10:08:50,207 - my_logger - INFO - Compressed size: 424459313 bytes
+2024-04-19 10:08:50,207 - my_logger - INFO - The compression rate is 0.3180770949100686

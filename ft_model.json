@@ -1,0 +1,13 @@
+{
+    "model1":{
+        "ft_model": "avneet/distilbert-base-uncased-finetuned-sst2",
+        "dataset": "glue",
+        "subdata": "sst2"
+    },
+    "model2":{
+        "ft_model": "BlitherBoom/distilbert-base-uncased-finetuned-sst2",
+        "dataset": "glue",
+        "subdata": "sst2"
+    }
+
+}

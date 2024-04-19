@@ -1,0 +1,14 @@
+2024-04-19 06:43:12,447 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 06:43:15,910 - my_logger - INFO - Dataset glue-rte loaded.
+2024-04-19 06:43:16,909 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 06:43:19,480 - my_logger - INFO - Original finetuned model anirudh21/albert-large-v2-finetuned-rte saved.
+2024-04-19 06:43:21,459 - my_logger - INFO - Structure of both models are same
+2024-04-19 06:43:23,805 - my_logger - INFO - Model compressed.
+2024-04-19 06:43:29,494 - my_logger - INFO - Model saved.
+2024-04-19 06:43:29,874 - my_logger - INFO - Saved model and loaded.
+2024-04-19 06:43:29,889 - my_logger - INFO - Test evaluation started.
+2024-04-19 06:43:45,054 - my_logger - INFO - {'eval_loss': 0.7634099125862122, 'eval_accuracy': {'accuracy': 0.5451263537906137}, 'eval_other_metric': {'accuracy': 0.5451263537906137}, 'eval_runtime': 15.1625, 'eval_samples_per_second': 18.269, 'eval_steps_per_second': 1.187}
+2024-04-19 06:43:45,054 - my_logger - INFO - Test evaluation finished.
+2024-04-19 06:43:45,055 - my_logger - INFO - Original size: 70753026 bytes
+2024-04-19 06:43:45,055 - my_logger - INFO - Compressed size: 32570818 bytes
+2024-04-19 06:43:45,055 - my_logger - INFO - The compression rate is 0.46034522961604496

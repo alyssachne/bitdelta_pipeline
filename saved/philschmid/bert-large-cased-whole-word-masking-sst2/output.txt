@@ -1,0 +1,14 @@
+2024-04-19 06:55:21,399 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 06:55:25,509 - my_logger - INFO - Dataset glue-sst2 loaded.
+2024-04-19 06:55:26,066 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 06:55:53,247 - my_logger - INFO - Original finetuned model philschmid/bert-large-cased-whole-word-masking-sst2 saved.
+2024-04-19 06:56:12,313 - my_logger - INFO - Structure of both models are same
+2024-04-19 06:56:43,955 - my_logger - INFO - Model compressed.
+2024-04-19 06:57:16,782 - my_logger - INFO - Model saved.
+2024-04-19 06:57:20,896 - my_logger - INFO - Saved model and loaded.
+2024-04-19 06:57:21,118 - my_logger - INFO - Test evaluation started.
+2024-04-19 06:58:02,269 - my_logger - INFO - {'eval_loss': 0.38788196444511414, 'eval_accuracy': {'accuracy': 0.8853211009174312}, 'eval_other_metric': {'accuracy': 0.8853211009174312}, 'eval_runtime': 41.148, 'eval_samples_per_second': 21.192, 'eval_steps_per_second': 1.337}
+2024-04-19 06:58:02,269 - my_logger - INFO - Test evaluation finished.
+2024-04-19 06:58:02,269 - my_logger - INFO - Original size: 1334454193 bytes
+2024-04-19 06:58:02,269 - my_logger - INFO - Compressed size: 424459313 bytes
+2024-04-19 06:58:02,269 - my_logger - INFO - The compression rate is 0.3180770949100686

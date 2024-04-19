@@ -4,6 +4,7 @@ from transformers import AutoModelForSequenceClassification, DistilBertForSequen
 import utils
 from dataset import get_dataset
 from datasets import load_metric
+import json
 
 task_to_keys = {
     "cola": ("sentence", None),
@@ -17,21 +18,21 @@ task_to_keys = {
     "wnli": ("sentence1", "sentence2"),
 }
 
-def setup_logger(root_dir):
-    logger = logging.getLogger('my_logger')
-    logger.setLevel(logging.DEBUG)
+# def setup_logger(root_dir):
+#     logger = logging.getLogger('my_logger')
+#     logger.setLevel(logging.DEBUG)
 
-    logger_path = os.path.join(root_dir, 'output.txt')
-    if os.path.exists(logger_path):
-        os.remove(logger_path)
-    fh = logging.FileHandler(logger_path)
-    fh.setLevel(logging.DEBUG)
+#     logger_path = os.path.join(root_dir, 'output.txt')
+#     if os.path.exists(logger_path):
+#         os.remove(logger_path)
+#     fh = logging.FileHandler(logger_path)
+#     fh.setLevel(logging.DEBUG)
 
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh.setFormatter(formatter)
+#     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#     fh.setFormatter(formatter)
 
-    # add handler to the logger
-    logger.addHandler(fh)
+#     # add handler to the logger
+#     logger.addHandler(fh)
 
 def setup_dataset(dataset_name, subdata, logger):
     if subdata:
@@ -76,9 +77,21 @@ def setup_subdata_key(subdata):
 
     return sentence1_key, sentence2_key
 
-def setup_logger(finetuned_model_name):
+def setup_ft_models(ft_model_json):
+    # load ft model info from json file
+    ft_model_info = json.load(open(ft_model_json))
+    ft_models = {}
+    for key in ft_model_info:
+        info = ft_model_info[key]
+        ft_model = info["ft_model"]
+        dataset_name = info["dataset"]
+        subdata = info["subdata"]
+        ft_models[ft_model] = (dataset_name, subdata)
+    
+    return ft_models    
 
-    root_dir = f"saved/{finetuned_model_name}"
+def setup_logger(root_dir):
+
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
 

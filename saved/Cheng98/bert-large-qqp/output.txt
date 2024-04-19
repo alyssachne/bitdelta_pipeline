@@ -1,0 +1,14 @@
+2024-04-19 10:34:58,477 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 10:35:02,254 - my_logger - INFO - Dataset glue-qqp loaded.
+2024-04-19 10:35:02,884 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 10:35:44,927 - my_logger - INFO - Original finetuned model Cheng98/bert-large-qqp saved.
+2024-04-19 10:35:47,297 - my_logger - INFO - Structure of both models are same
+2024-04-19 10:36:17,955 - my_logger - INFO - Model compressed.
+2024-04-19 10:45:18,780 - my_logger - INFO - Model saved.
+2024-04-19 10:45:22,969 - my_logger - INFO - Saved model and loaded.
+2024-04-19 10:45:23,187 - my_logger - INFO - Test evaluation started.
+2024-04-19 11:19:58,262 - my_logger - INFO - {'eval_loss': 0.7114629745483398, 'eval_accuracy': {'accuracy': 0.5398961167449914}, 'eval_other_metric': {'accuracy': 0.5398961167449914, 'f1': 0.6153273501799083}, 'eval_runtime': 2075.0718, 'eval_samples_per_second': 19.484, 'eval_steps_per_second': 1.218}
+2024-04-19 11:19:58,262 - my_logger - INFO - Test evaluation finished.
+2024-04-19 11:19:58,263 - my_logger - INFO - Original size: 1334454193 bytes
+2024-04-19 11:19:58,263 - my_logger - INFO - Compressed size: 424459313 bytes
+2024-04-19 11:19:58,263 - my_logger - INFO - The compression rate is 0.3180770949100686

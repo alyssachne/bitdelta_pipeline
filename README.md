@@ -39,36 +39,19 @@ conda activate csc413
 }
 ```
 
-## Model pairs used for compression testing
-Base model: [DistilBERT base model](https://huggingface.co/distilbert/distilbert-base-uncased)
-
-Finetuned models: [DistilBERT base uncased finetuned SST-2](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english)
-
-<br>
-
-Base model: [DistilRoBERTa base](https://huggingface.co/distilbert/distilroberta-base)
-
-Finetuned models: [DistilRoberta-financial-sentiment](https://huggingface.co/mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis)
-
 ## Datasets used for compression testing
-Sentiment Analysis: [GLUE](https://huggingface.co/datasets/nyu-mll/glue) (using sst2 subset), [GoEmotions](https://huggingface.co/datasets/go_emotions) (using simplified subset), [Stanford Sentiment Treebank](https://huggingface.co/datasets/stanfordnlp/sst2)
-
-Other Tasks: [financial_phrasebank](https://huggingface.co/datasets/financial_phrasebank)
+Sentiment Analysis: [GLUE](https://huggingface.co/datasets/nyu-mll/glue)
 
 ## Usage
 
 ```
 python test.py
 srun --gres gpu --partition=csc413 python3 test.py 
-srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "google/fnet-large" --finetuned_model "gchhablani/fnet-large-finetuned-sst2" --dataset "glue" --subdata "sst2"
-srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "distilbert/distilbert-base-uncased" --finetuned_model "anirudh21/distilbert-base-uncased-finetuned-rte" --dataset "glue" --subdata "rte"
+srun --gres gpu --partition=csc413 python3 test_by_name.py --base_model "google-bert/bert-large-uncased" --finetuned_model "SarielSinLuo/bert-large-uncased-finetuned-rte" --dataset "glue" --subdata "rte"
 
 ```
 
 ## Demo
-
-#Todo
-
-## Triton
-
-#Todo
+```
+If you want to pass in multiple fine-tuned models that share the same base model, but might train on different dataset, please refer to bitdelta/ft_model.json and follow the format.
+```

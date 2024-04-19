@@ -1,0 +1,14 @@
+2024-04-19 10:29:09,481 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 10:29:12,583 - my_logger - INFO - Dataset glue-rte loaded.
+2024-04-19 10:29:12,660 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 10:29:20,905 - my_logger - INFO - Original finetuned model SarielSinLuo/bert-large-uncased-finetuned-rte saved.
+2024-04-19 10:29:23,405 - my_logger - INFO - Structure of both models are same
+2024-04-19 10:29:55,717 - my_logger - INFO - Model compressed.
+2024-04-19 10:29:58,945 - my_logger - INFO - Model saved.
+2024-04-19 10:30:03,143 - my_logger - INFO - Saved model and loaded.
+2024-04-19 10:30:03,363 - my_logger - INFO - Test evaluation started.
+2024-04-19 10:30:16,594 - my_logger - INFO - {'eval_loss': 0.8958059549331665, 'eval_accuracy': {'accuracy': 0.47653429602888087}, 'eval_other_metric': {'accuracy': 0.47653429602888087}, 'eval_runtime': 13.2286, 'eval_samples_per_second': 20.939, 'eval_steps_per_second': 1.361}
+2024-04-19 10:30:16,594 - my_logger - INFO - Test evaluation finished.
+2024-04-19 10:30:16,595 - my_logger - INFO - Original size: 1340704689 bytes
+2024-04-19 10:30:16,595 - my_logger - INFO - Compressed size: 430709809 bytes
+2024-04-19 10:30:16,595 - my_logger - INFO - The compression rate is 0.32125628599185124

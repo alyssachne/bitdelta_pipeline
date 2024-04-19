@@ -1,0 +1,9 @@
+2024-04-19 10:12:24,023 - my_logger - WARNING - For now the dataset can only comes from the hub.
+2024-04-19 10:12:26,987 - my_logger - INFO - Dataset glue-rte loaded.
+2024-04-19 10:12:27,699 - my_logger - INFO - Tokenizer loaded.
+2024-04-19 10:13:07,968 - my_logger - INFO - Original finetuned model GeneZC/bert-large-rte saved.
+2024-04-19 10:13:13,170 - my_logger - INFO - Structure of both models are same
+2024-04-19 10:13:45,943 - my_logger - INFO - Model compressed.
+2024-04-19 10:13:57,290 - my_logger - INFO - Model saved.
+2024-04-19 10:14:01,220 - my_logger - INFO - Saved model and loaded.
+2024-04-19 10:14:01,431 - my_logger - INFO - Test evaluation started.
