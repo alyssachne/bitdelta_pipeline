@@ -15,13 +15,9 @@ If you have an NVIDIA graphics card, make sure to install torch with cuda at [he
 
 For Linux machines:
 ```
-install anaconda from https://www.anaconda.com/
+conda create --name bitdelta python=3.9
 
-export PATH="/Users/()username)/anaconda3/bin:$PATH"
-
-conda create --name csc413 python=3.9
-
-conda activate csc413
+conda activate bitdelta
 
 (csc413) pip3 install -r requirements.txt
 ```
