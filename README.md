@@ -54,3 +54,6 @@ srun --gres gpu --partition=csc413 python3 test.py
 ```
 If you want to pass in multiple fine-tuned models that share the same base model, but might train on different dataset, please refer to bitdelta/ft_model.json and follow the format.
 ```
+
+## [Final Paper](https://github.com/alyssachne/bitdelta_pipeline/blob/deploy/CSC413.pdf)
+
